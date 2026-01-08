@@ -567,7 +567,7 @@ const ResidentialPage = () => {
        />
 
        {/* Residential Pricing */}
-       <div className="py-24 px-6 bg-lux-card border-y border-white/5">
+       <div className="py-24 px-6 bg-lux-card border-y border-white/5 pb-32">
          <div className="max-w-7xl mx-auto">
             <h2 className="font-oswald text-3xl text-white uppercase text-center mb-16">Typical Configurations</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -617,16 +617,6 @@ const ResidentialPage = () => {
          </div>
        </div>
 
-       {/* Retainers */}
-       <div className="py-24 px-6 bg-lux-black pb-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-              <h2 className="font-oswald text-4xl text-white uppercase mb-4">Optional Monthly Retainers</h2>
-          </div>
-          <RetainerBlocks />
-        </div>
-      </div>
-
        <CTASection />
     </div>
   );
@@ -649,6 +639,19 @@ const PricingPage = () => {
          </div>
 
          <RetainerBlocks />
+
+         {/* Residential Pricing Block */}
+         <div className="mt-32 text-center">
+            <h2 className="font-oswald text-5xl text-white uppercase mb-10">Residential Pricing</h2>
+            <div className="bg-lux-card border border-white/10 p-12 py-16 rounded-sm max-w-5xl mx-auto flex flex-col items-center">
+                <p className="font-mono text-white text-xl md:text-2xl mb-10 leading-relaxed max-w-3xl">
+                    Investment Range: £35K–£150K initial setup, with ongoing monitoring from £500–£3,500/month
+                </p>
+                <Link to="/contact" className="inline-block bg-lux-accent text-black font-oswald font-bold text-lg px-8 py-4 uppercase tracking-wider hover:bg-white transition-colors">
+                    Get A Custom Quote
+                </Link>
+            </div>
+         </div>
       </div>
     </div>
   );
