@@ -134,8 +134,8 @@ const Footer = () => (
 
 const EmbedFrame = ({ src, title }: { src: string; title: string }) => {
   return (
-    <div className="w-full bg-lux-black pb-12 px-6">
-      <div className="max-w-7xl mx-auto h-[80vh] bg-lux-card border border-white/10 relative overflow-hidden rounded-sm">
+    <div className="w-full bg-lux-black pb-24 px-6 md:px-12">
+      <div className="max-w-[1600px] mx-auto h-[80vh] bg-lux-card border border-white/10 relative overflow-hidden rounded-sm shadow-2xl">
         <div className="absolute top-4 right-4 z-10 bg-black/50 backdrop-blur px-3 py-1 rounded border border-white/10 text-xs font-mono text-lux-accent flex items-center gap-2">
            <div className="w-2 h-2 rounded-full bg-lux-accent animate-pulse"></div>
            LIVE INTERACTIVE DEMO
@@ -152,7 +152,7 @@ const EmbedFrame = ({ src, title }: { src: string; title: string }) => {
 };
 
 const CTASection = () => (
-  <section className="py-24 px-6 bg-lux-black text-center">
+  <section className="py-24 px-6 bg-lux-black text-center border-t border-white/5">
     <h2 className="font-oswald text-4xl md:text-6xl text-white uppercase mb-8">
       Ready To Build Yours?
     </h2>
@@ -160,6 +160,134 @@ const CTASection = () => (
       Start Project
     </Link>
   </section>
+);
+
+const ImageFeatureBlock = ({ label, title, description, features, image, stat }: any) => (
+  <div className="bg-lux-black py-24 px-6 border-y border-white/5">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* Text Side */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-lux-accent font-mono text-sm uppercase">// {label}</span>
+        </div>
+        <h2 className="font-oswald text-5xl md:text-6xl text-white uppercase mb-6 leading-none">{title}</h2>
+        <p className="font-sans text-lg text-gray-400 mb-10 leading-relaxed border-l-2 border-white/10 pl-6">
+          {description}
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+          {features.map((f: string, i: number) => (
+             <div key={i} className="border border-white/10 bg-white/5 p-4 flex items-center gap-3 rounded-sm">
+                <CheckCircle className="text-lux-accent w-5 h-5 flex-shrink-0" weight="fill"/>
+                <span className="font-oswald text-white text-sm uppercase tracking-wide">{f}</span>
+             </div>
+          ))}
+        </div>
+
+        <Link to="/contact" className="inline-block bg-white text-black font-oswald font-bold text-sm px-8 py-4 uppercase tracking-wider hover:bg-lux-accent transition-colors">
+          Deploy For Your Team
+        </Link>
+      </div>
+
+      {/* Image Side */}
+      <div className="relative aspect-square lg:aspect-[4/3] group bg-lux-card border border-white/10 p-2">
+         <img src={image} alt={title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+         {/* Overlay Gradient */}
+         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+         {/* Stat Box */}
+         <div className="absolute bottom-8 left-8 bg-black/90 backdrop-blur border border-white/10 p-4">
+            <span className="block font-mono text-gray-500 text-xs uppercase mb-1">{stat.label}</span>
+            <span className="block font-oswald text-lux-accent text-3xl">{stat.value}</span>
+         </div>
+      </div>
+    </div>
+  </div>
+);
+
+const PricingBlocks = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-32">
+       {/* Professional */}
+       <div className="border border-white/10 bg-lux-card p-10">
+           <h3 className="font-oswald text-4xl text-white uppercase mb-2">Professional</h3>
+           <div className="flex items-baseline gap-2 mb-6">
+               <span className="font-oswald text-6xl text-white font-bold">$25,000</span>
+               <span className="font-mono text-gray-500 uppercase text-xs">/ One-time build</span>
+           </div>
+           <p className="text-gray-400 mb-8 h-12">Real-time intelligence for operational teams.</p>
+           
+           <ul className="space-y-4 mb-10">
+               {['Up to 3 API sources', 'Up to 4 dashboard views', '15-20 AI rules', '10 user seats', 'Custom styling', '2-week deployment', '60 days support', 'Browser based', 'Optional Monthly Retainer'].map(i => (
+                   <li key={i} className="flex items-center gap-3 text-sm text-gray-300 font-mono">
+                       <CheckCircle className="text-lux-accent text-lg" weight="fill" /> {i}
+                   </li>
+               ))}
+           </ul>
+           <Link to="/contact" className="block w-full bg-white text-black text-center font-oswald font-bold py-4 uppercase hover:bg-lux-accent transition-colors">
+               Book Demo
+           </Link>
+       </div>
+
+       {/* Enterprise */}
+       <div className="border border-lux-accent bg-black p-10 relative">
+           <div className="absolute top-0 right-0 bg-lux-accent text-black font-oswald font-bold text-sm px-4 py-1 uppercase">Popular</div>
+           <h3 className="font-oswald text-4xl text-lux-accent uppercase mb-2">Enterprise</h3>
+           <div className="flex flex-col mb-6">
+               <span className="font-mono text-gray-500 uppercase text-xs mb-1">Starting At</span>
+               <span className="font-oswald text-6xl text-white font-bold">$60,000</span>
+           </div>
+           <p className="text-gray-400 mb-8 h-12">Mission-critical command centers.</p>
+           
+           <ul className="space-y-4 mb-10">
+               {['Unlimited APIs', 'Unlimited views', '30+ AI rules or ML', 'Unlimited users', 'Fully bespoke design', '1-2 week priority', '6 months support', 'White-label option', 'Dedicated account mgr', 'Optional Monthly Retainer'].map(i => (
+                   <li key={i} className="flex items-center gap-3 text-sm text-white font-mono">
+                       <CheckCircle className="text-lux-accent text-lg" weight="fill" /> {i}
+                   </li>
+               ))}
+           </ul>
+           <Link to="/contact" className="block w-full bg-lux-accent text-black text-center font-oswald font-bold py-4 uppercase hover:bg-white transition-colors">
+               Book Demo
+           </Link>
+       </div>
+   </div>
+);
+
+const RetainerBlocks = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+       <div className="bg-lux-card border border-white/10 p-8 rounded flex justify-between items-start">
+           <div>
+               <h4 className="font-oswald text-2xl text-white uppercase mb-2">Maintenance</h4>
+               <p className="text-gray-500 text-sm mb-4 max-w-xs">Ensure your command center stays operational 24/7.</p>
+               <ul className="space-y-2 text-xs text-gray-300 font-mono">
+                   <li>+ Server Health Monitoring</li>
+                   <li>+ Security Patches & Updates</li>
+                   <li>+ 48-hour Support SLA</li>
+                   <li>+ Monthly Performance Report</li>
+               </ul>
+           </div>
+           <div className="text-right">
+               <span className="block font-oswald text-2xl text-lux-accent">$2,500</span>
+               <span className="text-xs text-gray-600 uppercase">/ Month</span>
+           </div>
+       </div>
+
+       <div className="bg-lux-card border border-white/10 p-8 rounded flex justify-between items-start">
+           <div>
+               <h4 className="font-oswald text-2xl text-white uppercase mb-2">Growth</h4>
+               <p className="text-gray-500 text-sm mb-4 max-w-xs">Continuous evolution of your operational intelligence.</p>
+               <ul className="space-y-2 text-xs text-gray-300 font-mono">
+                   <li>+ Everything in Maintenance</li>
+                   <li>+ 10 Hours Dedicated Dev Time</li>
+                   <li>+ Priority 4-hour Support SLA</li>
+                   <li>+ Quarterly Strategy Review</li>
+               </ul>
+           </div>
+           <div className="text-right">
+               <span className="block font-oswald text-2xl text-lux-accent">$5,000</span>
+               <span className="text-xs text-gray-600 uppercase">/ Month</span>
+           </div>
+       </div>
+   </div>
 );
 
 // --- Pages ---
@@ -289,45 +417,59 @@ const IndustryPage = ({ type }: { type: 'motorsports' | 'aerial' | 'fleet' | 'cu
     title: '',
     headline: '',
     subhead: '',
-    features: [] as string[]
+    features: [] as string[],
+    label: '',
+    image: '',
+    stat: { label: '', value: '' }
   };
 
   switch (type) {
     case 'motorsports':
       config = {
         url: 'https://gr86strategy.netlify.app/',
-        title: 'Motorsports Intelligence',
+        title: 'Motorsports',
+        label: 'Track-Side Intelligence',
         headline: 'Win On Strategy',
-        subhead: 'Real-time tire degradation analysis, gap prediction, and pit window optimization.',
-        features: ['Lap-by-lap analytics', 'Predictive Tire Wear AI', 'Fuel Load Strategy', 'Competitor Gap Analysis']
+        subhead: 'Optimize lap times, manage fuel strategy, and monitor vehicle health in milliseconds. Used by top-tier racing teams globally.',
+        features: ['Real-time Telemetry', 'Tire Degradation Models', 'Fuel Strategy AI', 'Driver Delta Analysis'],
+        image: 'https://i.ibb.co/r20kTnvW/motorsports-lux-ops.jpg',
+        stat: { label: 'Latency', value: '12ms' }
       };
       break;
     case 'aerial':
       config = {
         url: 'https://luxopsaerial.netlify.app/',
-        title: 'Aerial Command',
+        title: 'Aerial Systems',
+        label: 'Drone & UAV Command',
         headline: 'Drone Swarm Control',
         subhead: 'Coordinate drone swarms, monitor battery levels, and execute mission plans with precision.',
-        features: ['Swarm Coordination', 'Battery Management', 'Flight Path Visualization', 'Payload Monitoring']
+        features: ['Swarm Coordination', 'Battery Management', 'Flight Path Visualization', 'Payload Monitoring'],
+        image: 'https://i.ibb.co/8gk7zPbw/drones-lux-ops.jpg',
+        stat: { label: 'Uptime', value: '99.9%' }
       };
       break;
     case 'fleet':
       config = {
         url: 'https://luxopsfleet.netlify.app/',
-        title: 'Fleet Operations',
+        title: 'Fleet Ops',
+        label: 'Global Logistics Visibility',
         headline: 'Global Visibility',
         subhead: 'Track thousands of assets in real-time with predictive maintenance alerts.',
-        features: ['Route Optimization', 'Driver Safety Score', 'Fuel Efficiency Analysis', 'Maintenance Forecasting']
+        features: ['Route Optimization', 'Driver Safety Score', 'Fuel Efficiency Analysis', 'Maintenance Forecasting'],
+        image: 'https://i.ibb.co/7dx1fyD4/fleets-vans-lux-ops.jpg',
+        stat: { label: 'Assets', value: '10k+' }
       };
       break;
     case 'custom':
-        // Custom is a static image case based on prompt
       config = {
         url: '', // Handled separately
         title: 'Custom Solutions',
+        label: 'Bespoke Engineering',
         headline: 'Your Data, Your Rules',
         subhead: 'Bespoke dashboards for energy grids, manufacturing lines, and security ops.',
-        features: ['Unlimited API Integrations', 'White-label UI', 'On-premise Deployment', 'Dedicated Support']
+        features: ['Unlimited API Integrations', 'White-label UI', 'On-premise Deployment', 'Dedicated Support'],
+        image: 'https://i.ibb.co/HDfhZnPr/Untitled-4.jpg',
+        stat: { label: 'Data', value: '∞' }
       };
       break;
   }
@@ -335,7 +477,7 @@ const IndustryPage = ({ type }: { type: 'motorsports' | 'aerial' | 'fleet' | 'cu
   return (
     <div className="bg-lux-black min-h-screen">
       
-      {/* Header Block - Pushed down to clear nav */}
+      {/* Header Block */}
       <div className="pt-32 pb-12 px-6 max-w-7xl mx-auto">
          <div className="flex items-center gap-2 mb-4">
             <span className="text-lux-accent font-mono text-sm uppercase"> // {config.title}</span>
@@ -348,10 +490,10 @@ const IndustryPage = ({ type }: { type: 'motorsports' | 'aerial' | 'fleet' | 'cu
          </p>
       </div>
 
-      {/* Dashboard / Visual Block */}
+      {/* Dashboard Block */}
       {type === 'custom' ? (
-         <div className="w-full bg-lux-black pb-12 px-6">
-            <div className="max-w-7xl mx-auto h-[80vh] bg-lux-card border border-white/10 relative overflow-hidden flex items-center justify-center rounded-sm">
+         <div className="w-full bg-lux-black pb-24 px-6 md:px-12">
+            <div className="max-w-[1600px] mx-auto h-[80vh] bg-lux-card border border-white/10 relative overflow-hidden flex items-center justify-center rounded-sm">
                 <img src="https://i.ibb.co/HDfhZnPr/Untitled-4.jpg" alt="Custom Dashboard" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/40"></div>
                 <div className="absolute z-10 text-center">
@@ -364,24 +506,37 @@ const IndustryPage = ({ type }: { type: 'motorsports' | 'aerial' | 'fleet' | 'cu
         <EmbedFrame src={config.url} title={config.title} />
       )}
 
-      {/* Features Block */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           {config.features.map((feature, i) => (
-              <div key={i} className="bg-lux-card border border-white/10 p-6">
-                <CheckCircle className="text-lux-accent w-6 h-6 mb-4" />
-                <span className="font-oswald text-white text-lg uppercase">{feature}</span>
-              </div>
-            ))}
+      {/* Image & Feature Block */}
+      <ImageFeatureBlock 
+        label={config.label}
+        title={config.title}
+        description={config.subhead}
+        features={config.features}
+        image={config.image}
+        stat={config.stat}
+      />
+
+      {/* Commercial Pricing */}
+      <div className="py-24 px-6 bg-lux-black">
+        <div className="max-w-7xl mx-auto">
+             <div className="text-center mb-16">
+                 <h2 className="font-oswald text-4xl text-white uppercase mb-4">Standard Packages</h2>
+                 <p className="text-gray-400 font-sans">Deployment options for commercial operations.</p>
+             </div>
+             <PricingBlocks />
         </div>
-        
-         <div className="mt-12">
-            <Link to="/contact" className="bg-white text-black font-oswald font-bold text-sm px-6 py-3 uppercase tracking-wide hover:bg-lux-accent transition-colors inline-block">
-              Deploy For Your Team
-            </Link>
-         </div>
       </div>
       
+      {/* Retainers */}
+      <div className="py-12 px-6 bg-lux-black pb-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+              <h2 className="font-oswald text-4xl text-white uppercase mb-4">Optional Monthly Retainers</h2>
+          </div>
+          <RetainerBlocks />
+        </div>
+      </div>
+
       <CTASection />
     </div>
   );
@@ -401,8 +556,18 @@ const ResidentialPage = () => {
        {/* Dashboard Block */}
        <EmbedFrame src="https://majordomoresidential.netlify.app/" title="Residential Dashboard" />
 
-       {/* Pricing / Configs */}
-       <div className="py-24 px-6 bg-lux-card">
+       {/* Image Feature Block (Generic/Custom Image for Residential) */}
+       <ImageFeatureBlock 
+          label="Estate Management"
+          title="Residential"
+          description="Seamlessly integrate security, environment, and staff management into a single, elegant interface designed for tablet control."
+          features={['Environmental Monitors', 'Staff Locations', 'Security Integration', 'Wine Cellar AI']}
+          image="https://i.ibb.co/HDfhZnPr/Untitled-4.jpg" 
+          stat={{ label: 'Security', value: '24/7' }}
+       />
+
+       {/* Residential Pricing */}
+       <div className="py-24 px-6 bg-lux-card border-y border-white/5">
          <div className="max-w-7xl mx-auto">
             <h2 className="font-oswald text-3xl text-white uppercase text-center mb-16">Typical Configurations</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -452,6 +617,16 @@ const ResidentialPage = () => {
          </div>
        </div>
 
+       {/* Retainers */}
+       <div className="py-24 px-6 bg-lux-black pb-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+              <h2 className="font-oswald text-4xl text-white uppercase mb-4">Optional Monthly Retainers</h2>
+          </div>
+          <RetainerBlocks />
+        </div>
+      </div>
+
        <CTASection />
     </div>
   );
@@ -466,92 +641,14 @@ const PricingPage = () => {
              <p className="text-gray-400 font-sans">Standard packages for commercial operations and fleets.</p>
          </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-32">
-             {/* Professional */}
-             <div className="border border-white/10 bg-lux-card p-10">
-                 <h3 className="font-oswald text-4xl text-white uppercase mb-2">Professional</h3>
-                 <div className="flex items-baseline gap-2 mb-6">
-                     <span className="font-oswald text-6xl text-white font-bold">$25,000</span>
-                     <span className="font-mono text-gray-500 uppercase text-xs">/ One-time build</span>
-                 </div>
-                 <p className="text-gray-400 mb-8 h-12">Real-time intelligence for operational teams.</p>
-                 
-                 <ul className="space-y-4 mb-10">
-                     {['Up to 3 API sources', 'Up to 4 dashboard views', '15-20 AI rules', '10 user seats', 'Custom styling', '2-week deployment', '60 days support', 'Browser based', 'Optional Monthly Retainer'].map(i => (
-                         <li key={i} className="flex items-center gap-3 text-sm text-gray-300 font-mono">
-                             <CheckCircle className="text-lux-accent text-lg" weight="fill" /> {i}
-                         </li>
-                     ))}
-                 </ul>
-                 <Link to="/contact" className="block w-full bg-white text-black text-center font-oswald font-bold py-4 uppercase hover:bg-lux-accent transition-colors">
-                     Book Demo
-                 </Link>
-             </div>
+         <PricingBlocks />
 
-             {/* Enterprise */}
-             <div className="border border-lux-accent bg-black p-10 relative">
-                 <div className="absolute top-0 right-0 bg-lux-accent text-black font-oswald font-bold text-sm px-4 py-1 uppercase">Popular</div>
-                 <h3 className="font-oswald text-4xl text-lux-accent uppercase mb-2">Enterprise</h3>
-                 <div className="flex flex-col mb-6">
-                     <span className="font-mono text-gray-500 uppercase text-xs mb-1">Starting At</span>
-                     <span className="font-oswald text-6xl text-white font-bold">$60,000</span>
-                 </div>
-                 <p className="text-gray-400 mb-8 h-12">Mission-critical command centers.</p>
-                 
-                 <ul className="space-y-4 mb-10">
-                     {['Unlimited APIs', 'Unlimited views', '30+ AI rules or ML', 'Unlimited users', 'Fully bespoke design', '1-2 week priority', '6 months support', 'White-label option', 'Dedicated account mgr', 'Optional Monthly Retainer'].map(i => (
-                         <li key={i} className="flex items-center gap-3 text-sm text-white font-mono">
-                             <CheckCircle className="text-lux-accent text-lg" weight="fill" /> {i}
-                         </li>
-                     ))}
-                 </ul>
-                 <Link to="/contact" className="block w-full bg-lux-accent text-black text-center font-oswald font-bold py-4 uppercase hover:bg-white transition-colors">
-                     Book Demo
-                 </Link>
-             </div>
-         </div>
-
-         {/* Retainers */}
-         <div className="text-center mb-12">
+         <div className="text-center mb-12 mt-20">
             <h2 className="font-oswald text-4xl text-white uppercase mb-4">Optional Monthly Retainers</h2>
             <p className="text-gray-400">Post-launch support packages to keep your operations running at peak efficiency.</p>
          </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-             <div className="bg-lux-card border border-white/10 p-8 rounded flex justify-between items-start">
-                 <div>
-                     <h4 className="font-oswald text-2xl text-white uppercase mb-2">Maintenance</h4>
-                     <p className="text-gray-500 text-sm mb-4 max-w-xs">Ensure your command center stays operational 24/7.</p>
-                     <ul className="space-y-2 text-xs text-gray-300 font-mono">
-                         <li>+ Server Health Monitoring</li>
-                         <li>+ Security Patches & Updates</li>
-                         <li>+ 48-hour Support SLA</li>
-                         <li>+ Monthly Performance Report</li>
-                     </ul>
-                 </div>
-                 <div className="text-right">
-                     <span className="block font-oswald text-2xl text-lux-accent">$2,500</span>
-                     <span className="text-xs text-gray-600 uppercase">/ Month</span>
-                 </div>
-             </div>
-
-             <div className="bg-lux-card border border-white/10 p-8 rounded flex justify-between items-start">
-                 <div>
-                     <h4 className="font-oswald text-2xl text-white uppercase mb-2">Growth</h4>
-                     <p className="text-gray-500 text-sm mb-4 max-w-xs">Continuous evolution of your operational intelligence.</p>
-                     <ul className="space-y-2 text-xs text-gray-300 font-mono">
-                         <li>+ Everything in Maintenance</li>
-                         <li>+ 10 Hours Dedicated Dev Time</li>
-                         <li>+ Priority 4-hour Support SLA</li>
-                         <li>+ Quarterly Strategy Review</li>
-                     </ul>
-                 </div>
-                 <div className="text-right">
-                     <span className="block font-oswald text-2xl text-lux-accent">$5,000</span>
-                     <span className="text-xs text-gray-600 uppercase">/ Month</span>
-                 </div>
-             </div>
-         </div>
+         <RetainerBlocks />
       </div>
     </div>
   );

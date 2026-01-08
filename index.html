@@ -70,8 +70,8 @@
   <body>
     <div id="root"></div>
     
-    <!-- Netlify Form Hidden Input for Detection (Dynamic form handling in React usually needs a hidden HTML form for Netlify bots to scrape) -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <!-- Netlify Form Hidden Input for Detection -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
       <input type="text" name="firstName" />
       <input type="text" name="lastName" />
       <input type="email" name="email" />
